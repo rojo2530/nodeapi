@@ -1,0 +1,240 @@
+main {
+   width: 99%;
+   margin:auto;
+   padding-top:50px;
+}
+
+.title-section {
+    color:var(--color-text);
+    /* font-size:2.5vw; */
+    margin-bottom: 1.5rem;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-shrink: 1;
+  height: 100%;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.flex-card {
+    width: 25vw;
+    height: 20vh;
+    background-size: 100% 100%;
+    margin: 5px; 
+    border-radius: 1px;
+    cursor: pointer;
+    transition: 0.5s;
+    color: var(--color-text);
+  }
+.flex-card:hover {
+    width: 40vw;
+    height: 22vw;
+    transition: 0.5s;
+    opacity: 1;
+    transition-delay: 0.3s;
+  }
+
+.flex-container .body-item {
+  height: 100%;
+  opacity: 0;
+  visibility: hidden; 
+}
+.flex-container .body-item:hover {
+  width: 40vw;
+  height: 22vw;
+  opacity: 1;
+  transition: 0.4s;
+  transition-delay: 0.4s;
+}
+
+.flex-container .body-item-2 {
+  font-size: 2vw;
+  margin-bottom: 0.5vw;
+} 
+
+.flex-container .body-item-4 {
+  padding-right: 3vw;
+} 
+
+.flex-card:hover .body-item {
+  visibility: visible;
+}
+.flex-card:hover .body-item-1 {
+  width: 40vw;
+}
+
+.match {
+  color: #45af5e;
+  font-size: bold;
+}
+.description {
+  font-weight: 300;
+  font-size: 1.4vw;
+}
+.properties {
+  font-size: 1.35vw;
+}
+.properties * {
+  margin: 1px;
+}
+.properties .age-limit {
+  border: 0.1em solid rgba(255, 255, 255, 0.4);
+  font-weight: 200;
+  font-size: 1.2vw;
+  padding: 0 3px 0 3px;
+}
+
+.body-item > a {
+  text-decoration:none;
+}
+
+.body-item > a:link, .body-item > a:visited {
+  color:var(--color-text);
+}
+
+.flex-card-1 {
+  background-image: url("../img/predator-movie1.jpg");
+}
+.flex-card-1:hover {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9)), url("../img/predator-movie1-hover.jpg");
+  background-size: 100% 100%;
+}
+.flex-card-2 {
+  background-image: url("../img/captain-america-movie2.jpg");
+}
+.flex-card-2:hover {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9)), url("../img/captain-america-movie2-hover.jpg");
+  background-size: 100% 100%;
+}
+.flex-card-3 {
+  background-image: url(../img/harry-potter-movie3.jpg);
+}
+.flex-card-3:hover {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9)), url(../img/harry-potter-movie3-hover.jpg);
+  background-size: 100% 100%;
+}
+.flex-card-4 {
+  background-image: url(../img/lordOfRings-movie4.jpg);
+}
+.flex-card-4:hover {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9)), url(../img/lordOfRings-movie4-hover.jpg);
+  background-size: 100% 100%;
+}
+.flex-card-5 {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9)), url(http://www.sickchirpse.com/wp-content/uploads/2017/03/Breaking-Bad.jpg);
+}
+.flex-card-5:hover {
+  background-image: url(http://www.hdwallpapers.in/walls/marvel_deadpool_movie-wide.jpg);
+  background-size: 100% 100%;
+}
+
+
+/* Tablets en horizontal */
+@media only screen and (min-width:768px) and (max-width: 1199px) {
+  .flex-card {
+    width: 25vw;
+    height: 15vh;
+  }
+
+  .flex-card:hover {
+    width:25vw;
+    height: 15vh;
+  }
+
+  .body-item {
+    display:none;
+  }
+
+  /* Desactivamos el efecto hover para movil y tablet y añadimos link directo a la pagina de detail */
+  .flex-card-1:hover {
+    background-image: url("../img/predator-movie1.jpg");
+  }
+
+  .flex-card-2:hover {
+    background-image: url("../img/captain-america-movie2.jpg");
+  }
+
+  .flex-card-3:hover {
+    background-image: url("../img/harry-potter-movie3.jpg");
+  }
+
+  .flex-card-4:hover {
+    background-image: url("../img/lordOfRings-movie4.jpg");
+  }
+
+  .link-mobile {
+    display:block;
+    height: 100%;
+  }
+
+
+
+}
+
+/*Tablet en vertical */
+@media only screen and (max-width:768px) {
+  .flex-card:hover {
+    width:25vw;
+    height: 13vh;
+  }
+
+  .body-item {
+    display:none;
+  }
+
+  /* Desactivamos el efecto hover para movil y tablet */
+  .flex-card-1:hover {
+    background-image: url("../img/predator-movie1.jpg");
+  }
+
+  .flex-card-2:hover {
+    background-image: url("../img/captain-america-movie2.jpg");
+  }
+
+  .flex-card-3:hover {
+    background-image: url("../img/harry-potter-movie3.jpg");
+  }
+
+  .flex-card-4:hover {
+    background-image: url("../img/lordOfRings-movie4.jpg");
+  }
+
+  .link-mobile {
+    display:block;
+    height: 100%;
+  }
+
+}
+
+/* Moviles en vertical */
+@media only screen and (max-width:480px) {
+  .flex-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .flex-card {
+    width: 45vw;
+    height: 20vh;
+  }
+
+  .flex-card:hover {
+    width:45vw;
+    height: 20vh;
+    
+  }
+
+  
+
+
+
+
+
+  
+
+}

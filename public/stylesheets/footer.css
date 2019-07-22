@@ -1,0 +1,74 @@
+.footer {
+    color:grey;
+    display:flex;
+    padding: 5rem 1.5rem;
+}
+
+.footer a {
+    color: grey; 
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.links, .social {
+    flex: 1;
+}
+
+.links-list {
+    list-style: none;
+}
+
+.links-list li {
+    margin: .75rem;
+}
+
+.links-list li:last-child {
+    font-size: 0.8rem;
+}
+
+.social-list {
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+}
+
+.social-list i:before {
+    font-size: 2rem;
+}
+
+.social-list a:hover {
+    text-decoration: none;
+}
+
+/* Tablets en horizontal y escritorio normal */
+@media only screen and (min-width:768px) and (max-width: 1199px) {
+   
+}
+
+/* Moviles horizontal o tablets en vertical */
+@media only screen and (max-width:768px) {
+
+}
+
+/* Moviles en vertical */
+@media only screen and (max-width:480px) {
+   .footer {
+    flex-direction: column;
+    text-align: center;
+    
+   }
+
+  .links-list {
+    padding-bottom: 1rem;
+  }
+
+  .social-list {
+    justify-content: center;
+  }
+}
+
+
+

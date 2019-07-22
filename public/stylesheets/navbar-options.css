@@ -1,0 +1,28 @@
+/* .navbar-options {
+    display:flex;
+    align-items: center;
+    position: fixed;
+    top:1;
+    z-index: 1;
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    justify-content: flex-start;
+} */
+
+.navbar-options {
+background-color: var(--background-color-dark);
+    color:white;
+    width: 99%;
+    position: fixed;
+    padding-left: 1rem;
+    top:50px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.input-price {
+    padding-left: 1.5rem;
+    
+}

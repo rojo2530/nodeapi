@@ -1,0 +1,13 @@
+* , *:after,*:before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    outline: none;
+}
+
+:root {
+    --main-color:#e50914;
+    --color-text: #fff;
+    --background-color-dark:#141414;;
+}
