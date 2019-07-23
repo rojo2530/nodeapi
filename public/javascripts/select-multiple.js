@@ -1,0 +1,1 @@
+$('.label.ui.dropdown').dropdown();

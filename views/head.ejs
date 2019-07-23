@@ -1,8 +1,89 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+<html lang="en">
 
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css">
+
+  <link rel="stylesheet" href="stylesheets/reset.css">
+  <link rel="stylesheet" href="stylesheets/home-styles.css">
+  <link rel="stylesheet" href="stylesheets/navbar.css">
+  <link rel="stylesheet" href="stylesheets/slider.css">
+  <link rel="stylesheet" href="stylesheets/flaticon.css">
+  <link rel="stylesheet" href="stylesheets/footer.css">
+  <link rel="stylesheet" href="stylesheets/grid.css">
+  <link rel="stylesheet" href="stylesheets/select-style.css">
+  <link rel="stylesheet" href="stylesheets/navbar-options.css">
+  <link rel="stylesheet" href="stylesheets/ads-style.css">
+ 
+
+</head>
+
+<body>
+  <nav class="navbar">
+    <!-- <div class="logo">
+      <img src="img/logo-home.png" alt="logo">
+    </div> -->
+    <input type="checkbox" id="burger-checkbox">
+    <label for="burger-checkbox" class="burger-label"></label>
+    <ul class="navbar-list">
+      <li class="navbar-item"><a href="/">Inicio</a></li>
+      <!-- <li class="navbar-item"><a href="#peliculas">Películas</a></li>
+      <li class="navbar-item"><a href="#series">Series</a></li>
+      <li class="navbar-item"><a href="#favoritos">Favoritos</a></li> -->
+      <li class="navbar-item"><a href="#buscar">
+          <input type="text" class="search-textbox-mobile" placeholder="Buscar..">
+        </a></li>
+      <li class="navbar-item"><a href="index.html">Cerrar Sesión</a></li>
+    </ul>
+    <div class="search">
+      <input type="text" class="search-textbox" placeholder="Buscar..">
+    </div>
+    <div class="logout">
+      <button class="logout-button" value="Cerrar Sesión">
+        <a href="index.html">Buscar</a>
+    </button>
+      
+  
+  
+  </div>
+  </nav>
+
+  
+  
+  <!-- <div class="separator"></div> -->
+  <nav class="navbar-options">
+    <label class="custom-select">
+      <select>
+          <option value="" selected="selected" disabled="disabled">Compra o Venta</option>
+          <option>Compra</option>
+          <option>Venta</option>
+         
+      </select>
+    </label>
+    <label for="input1" class="input-price">Precio desde:</label>
+    <input type="text" id="price" class="price" autocomplete="off">
+    <label for="input1" class="input-price">Precio Hasta:</label>
+    <input type="text" id="price" class="price" autocomplete="off">
+    
+    <label class="label-tags">Tags</label>
+
+    <select name="skills" multiple="" class="label ui selection fluid dropdown select-tags">
+      <option value="">All</option>
+      <option value="1">lifestyle</option>
+      <option value="2">motor</option>
+      <option value="3">mobile</option>
+      <option value="4">work</option>
+
+
+    </select>
+
+  </nav>
+  <header class="header">
+    
+
+  </header>
