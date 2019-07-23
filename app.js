@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use('/',      require('./routes/index'));
 app.use('/apiv1', require('./routes/apiv1'));
 
@@ -28,6 +29,13 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
+
+  if (err.array) { //error de validacion
+    err.status = 422;
+    const errInfo = err.array({onlyFirstError: true})[0]; //Sacamos la propiedad cero.
+    err.message = `Not valid - ${errInfo.param} ${errInfo.msg}`;
+  }
+
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
