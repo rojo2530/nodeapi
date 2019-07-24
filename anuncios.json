@@ -1,5 +1,4 @@
-{  
-    "anuncios": [    
+[    
         {      
             "nombre": "Bicicleta",      
             "venta": true,      
@@ -73,5 +72,4 @@
         }
 
 
-    ]
-}
+]
