@@ -21,10 +21,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 /**
  * Conexion a la base de datos
  */
-require('./lib/connectMongoose'); 
+require('./lib/connectMongoose');
+require('./models/Anuncio');
+
+/**
+ * Rutas para la API
+ */
+app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
+
+ /**
+  * Rutas para las vistas
+  */
 
 app.use('/',      require('./routes/index'));
-app.use('/apiv1', require('./routes/apiv1'));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
