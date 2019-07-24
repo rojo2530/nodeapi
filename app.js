@@ -18,6 +18,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+/**
+ * Conexion a la base de datos
+ */
+require('./lib/connectMongoose'); 
+
 app.use('/',      require('./routes/index'));
 app.use('/apiv1', require('./routes/apiv1'));
 
