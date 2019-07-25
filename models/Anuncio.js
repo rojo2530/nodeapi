@@ -4,15 +4,14 @@ const mongoose = require('mongoose');
 
 //definimos un esquema
 const anuncioSchema = mongoose.Schema({
-    name: String,
+    nombre: String,
     venta: Boolean,
     precio: Number,
     foto: String,
     tags: [String]
 });
-// , collection:'agentes');  //para saltarse la pluralización
 
-//Creamos el modelo de Agente
+//Creamos el modelo de Anuncio
 
 const Anuncio = mongoose.model('Anuncio', anuncioSchema);
 

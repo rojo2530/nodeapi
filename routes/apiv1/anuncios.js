@@ -62,7 +62,7 @@ router.get('/', async (req, res, next) => {
     if (venta) {
         query.venta = venta;
     }
-    //Si buscamos por nombre, no va a ser por nombre exacto sino que empiece por ese nombre
+    //Si buscamos por nombre, no va a ser por nombre exacto sino que empiece por ese nombre, omitiendo mayúsculas
     if (nombre) {
         const regexNombre = new RegExp("^" + nombre, 'i');
         query.nombre = regexNombre;

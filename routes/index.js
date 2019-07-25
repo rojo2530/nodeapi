@@ -1,28 +1,14 @@
 var express = require('express');
 var router = express.Router();
-const {query, validationResult, checkSchema} = require('express-validator');
+const {query, validationResult} = require('express-validator');
+const Anuncio = require('../models/Anuncio');
+const isEmpty = require('../lib/utils');
 
 /* GET home page. */
 
 const tags = ["work", "lifestyle", "motor", "mobile"];
 const queryParametersValid = ["tag", "venta", "nombre", "precio", "start", "limit", "precio"];
 
-
-
-//check if tag is valid
-// router.get('/', (req, res, next) => {
-//   // const {tag, venta, nombre, precio, start, limit, sort} = request.query;
-//   const tag = req.query.tag;
-
-//   if (!tags.includes(tag) && tag) {
-//     res.status(422);
-//     next({status:422, message:'Tag value query doesnt exists'})
-//     // return;
-//   }
-//     next();
-// });
-
-//check if venta is boleean
 router.get('/',
   query('venta').optional().isBoolean().withMessage('must be a boleean value') ,
   query('tag').optional().isIn(["work", "lifestyle", "motor", "mobile"]).withMessage('is not valid'),
@@ -37,29 +23,46 @@ router.get('/',
       next();
 });
 
-// router.get('/prueba', checkSchema({
-//   tag: {
-//     // The location of the field, can be one or more of body, cookies, headers, params or query.
-//     // If omitted, all request locations will be checked
-//     in: ['work', 'lifestyle', 'motor', 'mobile'],
-//     errorMessage: 'tag is wrong',
-//     },
 
-//   }), (req, res, next) => {
-//     const tag = req.query.tag;
-//     console.log(tag);
-
-//     res.send('ok');
-
-//   });
-
-
-
-
-
-router.get('/', function(req, res, next) {
+router.get('/', async (req, res, next) => {
+  const query = {};
+  const {tag, venta, nombre, precio, start, limit, sort} = req.query;
   
-  res.render('index', { title: 'Express' });
+  // if (isEmpty(req.query)) {
+  //   try {
+  //       const anuncios = await Anuncio.find().exec();
+  //       return;
+  //   } catch (err) {
+  //       next(err);
+  //       return;
+  //   }
+  // }
+
+  // query.tags = (typeof tag === 'undefined') ? undefined: tag;
+  if (tag) query.tags = tag;
+  if (venta) query.venta = venta;
+  
+
+  console.log(query);
+
+//Si buscamos por nombre, no va a ser por nombre exacto sino que empiece por ese nombre, omitiendo mayúsculas
+  if (nombre) {
+      const regexNombre = new RegExp("^" + nombre, 'i');
+      query.nombre = regexNombre;
+  }
+
+  
+
+  try {
+      console.log('Entra tags');
+      const anuncios = await Anuncio.find(query).sort(sort).exec();
+      res.render('index', { anuncios: anuncios});
+      return;
+  } catch (err) {
+      next(err);
+      return;
+  }
+
 });
 
 module.exports = router;

@@ -3,18 +3,21 @@
   <main>
       <h2 class="title-section">Listado de anuncios</h2>
      <section class="ads">
-      <ul class="list">
-        <li class="list-item">
-          <div class="list-content">
-            <h2>Iphone 7</h2>
-            <img src="images/iphone7.jpg" alt="iphone 7"/>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, eveniet.</p>
-            <p>Precio: 250€</p>
-            <p>Tags: lifestyle, mobile</p>
-          </div>
-        </li>
+        <ul class="list">
+          <% anuncios.forEach(anuncio => {   %>
+          <li class="list-item">
+            <div class="list-content">
+              <h2><%= anuncio.nombre %></h2>
+              <img src="images/<%= anuncio.foto %>" alt="<%= anuncio.foto%>"/>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, eveniet.</p>
+              <p>Precio: <%= anuncio.precio %>€</p>
+              <p>Tags: <%= anuncio.tags %></p>
+            </div>
+          </li>
+          <% }); %>
+
         
-         <li class="list-item">
+         <!-- <li class="list-item">
           <div class="list-content">
             <h2>Bicicleta</h2>
             <img src="images/bici.jpg" alt="bici" />
@@ -74,10 +77,12 @@
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum molestiae esse dolore corporis velit fugiat ipsam tempore optio dicta. Magnam iusto facere, maxime! Praesentium quo laborum, deserunt adipisci. Ipsam officia delectus repudiandae, aperiam magnam blanditiis fuga similique.</p>
               <a href="">Link</a>
             </div>
-          </li>
+          </li> -->
 
       </ul>
     </section> 
+   
+
   </main> 
 
 <% include ../views/footer.html%>
