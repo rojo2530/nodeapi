@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "cross-env DEBUG=nodeapi:* nodemon",
-    "prod": "cross-env NODE_ENV=production npm start"
+    "prod": "cross-env NODE_ENV=production npm start",
+    "installDB": "node lib/install_db.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
