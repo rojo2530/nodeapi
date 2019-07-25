@@ -39,14 +39,14 @@
             "nombre": "Infiniti Q60",      
             "venta": true,      
             "precio": 50800,      
-            "foto": "hondacbr",      
+            "foto": "infinitiq60.jpg",      
             "tags": [ "motor"]    
         },
         {
             "nombre": "Honda CBR600",      
             "venta": true,      
             "precio": 8000,      
-            "foto": "hondacbr",      
+            "foto": "hondacbr.jpg",      
             "tags": [ "motor"]    
         },
         {
@@ -67,7 +67,7 @@
             "nombre": "zapatillas deporte",      
             "venta": true,      
             "precio": 70,      
-            "foto": "zapatillas",      
+            "foto": "zapatillas.jpg",      
             "tags": [ "lifestyle"]    
         }
 
