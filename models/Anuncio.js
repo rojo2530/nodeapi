@@ -4,12 +4,42 @@ const mongoose = require('mongoose');
 
 //definimos un esquema
 const anuncioSchema = mongoose.Schema({
-    nombre: String,
-    venta: Boolean,
-    precio: Number,
-    foto: String,
-    tags: [String]
+    nombre: {
+        type: String,
+        required: true
+    },
+    venta: {
+        type: Boolean,
+        required: true
+    },
+    precio: {
+        type: Number,
+        required: true,
+        validate: {
+            validator: Number.isInteger,
+            message: '{VALUE} is not an integer value'
+        }
+    },
+    foto: {
+        type: String,
+        required: true  
+    },
+    tags:{
+        type: [String],
+        enum: ['work', 'mobile', 'lifestyle', 'motor'],
+        validate: [(value) => value.length > 0, 'Tags can not be empty'],
+        unique: true
+    }
 });
+
+anuncioSchema.statics.list = function ({filter, start, limit, sort, fields}) {   //No usar aquí arrow functions, ya que este this es un this sintectico inyectoado por Moongoose
+    const query = Anuncio.find(filter);
+    query.skip((start - 1) * limit) ;   //Pasamos (start -1) * limit, porque skip representa en el número de documentos o registros que nos saltamos y start en la pagina que empezamos, por tanto skip = (start - 1) * limit
+    query.limit(limit);
+    query.select(fields);
+    query.sort(sort);
+    return query.exec();
+}
 
 //Creamos el modelo de Anuncio
 

@@ -28,6 +28,8 @@ require('./models/Anuncio');
  * Rutas para la API
  */
 app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
+app.use('/apiv1/tags', require('./routes/apiv1/tags'));
+
 
  /**
   * Rutas para las vistas
@@ -43,25 +45,34 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  console.log('url: ',req.path);
+  console.log(req.originalUrl);
+  // comprobar error de validación que hemos hecho con el middleware express-validator
   if (err.array) { //error de validacion
     err.status = 422;
     const errInfo = err.array({onlyFirstError: true})[0]; //Sacamos la propiedad cero.
-    err.message = `Not valid - ${errInfo.param} ${errInfo.msg}`;
+    err.message = isApi(req) ? 
+        { message: 'Not valid', errors: err.mapped()}:
+        `Not valid - ${errInfo.param} ${errInfo.msg}`;
   }
+  res.status(err.status || 500);
 
+
+  if (isApi(req)) {
+    res.json({ sucesss: false, error: err.message});
+    return;   
+  }
+  
+   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  console.log(err);
   // render the error page
-  if (req.path === '/apiv1/anuncios') {
-    res.status(err.status || 500);
-    res.json(err);
-  }
-    res.status(err.status || 500);
-    res.render('error');
+
+  res.render('error');
 });
+
+function isApi(req) {
+  return req.originalUrl.indexOf('/apiv') === 0;
+}
 
 module.exports = app;
