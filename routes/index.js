@@ -1,68 +1,70 @@
-var express = require('express');
-var router = express.Router();
-const {query, validationResult} = require('express-validator');
-const Anuncio = require('../models/Anuncio');
-const isEmpty = require('../lib/utils');
+'use strict';
 
-/* GET home page. */
+const express = require('express');
+const router = express.Router();
+const Anuncio = require('../models/Anuncio');
+const { query,validationResult} = require('express-validator');
 
 const tags = ["work", "lifestyle", "motor", "mobile"];
-const queryParametersValid = ["tag", "venta", "nombre", "precio", "start", "limit", "precio"];
 
 router.get('/',
-  query('venta').optional().isBoolean().withMessage('must be a boleean value') ,
-  query('tag').optional().isIn(["work", "lifestyle", "motor", "mobile"]).withMessage('is not valid'),
-  query('nombre').optional().isAlphanumeric().withMessage('is not valid'),
-  query('start').optional().isInt({gt: 0}).withMessage('must be a positive number'),
-  query('limit').optional().isInt({gt: 0}).withMessage('must be a positive number'),
-  query('precio').optional().matches('(^[0-9]+-[0-9]*$)|(^-?[0-9]+$)').withMessage('is not valid'),
+    query('venta').optional().isBoolean().withMessage('must be a boleean value'),
+    query('tag').optional().isIn(tags).withMessage('is not valid, only ' + tags.join(',')),
+    query('nombre').optional().isAlphanumeric().withMessage('is not valid'),
+    query('start').optional().isInt({gte: 0}).withMessage('must be a positive number'),
+    query('limit').optional().isInt({gt: 0}).withMessage('must be a positive number'),
+    query('precio').optional().matches('(^[0-9]+-[0-9]*$)|(^-?[0-9]+$)').withMessage('is not valid'),
 
-
-    (req,res,next) => {
-      validationResult(req).throw(); 
-      next();
-});
-
+    (req, res, next) => {
+        validationResult(req).throw();
+        next();
+    });
 
 router.get('/', async (req, res, next) => {
-  const query = {};
-  const {tag, venta, nombre, precio, start, limit, sort} = req.query;
-  
-  // if (isEmpty(req.query)) {
-  //   try {
-  //       const anuncios = await Anuncio.find().exec();
-  //       return;
-  //   } catch (err) {
-  //       next(err);
-  //       return;
-  //   }
-  // }
+    try {
+       
+        //Valores por defecto
+        const start = typeof req.query.start === 'undefined' ? 1 : parseInt(req.query.start);
+        const limit = typeof req.query.limit === 'undefined' ? 8 : parseInt(req.query.limit);
+        const filter = {};
+        const { tag, venta, nombre, sort, precio, fields } = req.query;
 
-  // query.tags = (typeof tag === 'undefined') ? undefined: tag;
-  if (tag) query.tags = tag;
-  if (venta) query.venta = venta;
-  
-
-  console.log(query);
-
-//Si buscamos por nombre, no va a ser por nombre exacto sino que empiece por ese nombre, omitiendo mayúsculas
-  if (nombre) {
-      const regexNombre = new RegExp("^" + nombre, 'i');
-      query.nombre = regexNombre;
-  }
-
-  
-
-  try {
-      console.log('Entra tags');
-      const anuncios = await Anuncio.find(query).sort(sort).exec();
-      res.render('index', { anuncios: anuncios});
-      return;
-  } catch (err) {
-      next(err);
-      return;
-  }
-
+        //Si buscamos por nombre, no va a ser por nombre exacto sino que empiece por ese nombre, omitiendo mayúsculas
+        if (nombre)  filter.nombre = new RegExp("^" + nombre, 'i');
+        
+        if (typeof venta !== 'undefined')  filter.venta = venta;
+        
+        if (tag) filter.tags = tag;
+        
+        if (typeof precio !== 'undefined')  filter.precio = getPriceFilter(precio);
+        
+        const anuncios = await Anuncio.list({filter: filter, start, limit, sort, fields});
+        res.render('index', { anuncios: anuncios});
+        return;
+    } catch (err) {
+        next(err);
+        return;
+    }
 });
+
+function getPriceFilter(price) {
+    //Si no incluye el guión buscamos por precio exacto
+    if (!price.includes('-')) {
+        return parseInt(price);
+    }
+    //Si comienza por un guión buscamos los articulos menores a ese precio
+    if (price[0] === '-') {
+        const priceNumber = parseInt(price.slice(1));
+        return { '$lte': priceNumber };
+    }
+    //Si termina por un guión buscamos los artículos mayores a ese precio
+    if (price[price.length - 1] === '-') {
+        const priceNumber = parseInt(price.slice(0));
+        return { '$gte': priceNumber };
+    }
+
+    const prices = price.split('-');
+    return { '$gte': prices[0], '$lte': prices[1] };
+}
 
 module.exports = router;
