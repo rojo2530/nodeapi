@@ -19,6 +19,14 @@ For your data, use MongoDB , where you save a list of ads with the following Sch
         foto: String,     
         tags: [String] });
 
+### Description of fields
+
+* nombre: It's the ad name.
+* venta: if it's true then is a ad sale, if not if a buy sale.
+* precio: The product price.
+* foto: it's the name of picture file.
+* tags: It may be some of these 4: work, lifestyle, mobile and motor.
+
 **tags** only can only be work, lifestyle, mobile or motor.
 
 Both the API and the view return a list of ads using filters that are passed as query parameters.
@@ -94,7 +102,7 @@ List ads, by default show only first 8 ads, for example:
 * **limit** [Positive Integer]: It's the number of items displayed per page, by default is 8.
 * **tag:** Filter by tag, only can filter with one tag, you can only filter by a tag that can be work, lifestyle, mobile or motor.
 * **nombre**: Filter by name, you can only filter by a tag that can be work, lifestyle, mobile or work.
-* **sort**: Sory by a field, for example by price, or by name, If we put a '-' in front of it will sort in reverse order.
+* **sort**: Sort by a field, for example by price, or by name, If we put a '-' in front of it will sort in reverse order.
 * **venta**[Boleean]: If the ad is sale or buy.
 * **fields**: You can show only the fields you put in fields
 * **precio**[Positive Integer]: It can be searched for an exact price or price range as follows:
@@ -209,6 +217,40 @@ The fields have a number of restrictions that we explain below:
 }
 }
 ```
+
+### Ad create (POST)
+
+http://localhost:7000/apiv1/anuncios
+
+To create a new ad all fields are required and have to be of the following types:
+
+* nombre: String
+* venta: Boleean,
+* precio: Positive Integer,
+* foto: String,
+* tags: Array of Strings: Each array's element only can be work, lifestyle, mobile or motor.
+
+Note: If repeated tags for example, for example [work, work, mobile], only the only ones will be saved when creating the ad, i.e. it would be [work, mobile]
+
+For example , if any field is missing it will give an error:
+
+```
+{
+    "sucesss": false,
+    "error": "Anuncio validation failed: venta: Path `venta` is required., precio: Path `precio` (0) is less than minimum allowed value (1)."
+}
+```
+
+## Views
+
+The other part of the app is the front of the ads view.
+Filters are the same as in the api and are made using query parameters.
+
+The only difference is the route, which in the case of the view would be:
+
+`http://localhost:7000`
+
+
 
 
 

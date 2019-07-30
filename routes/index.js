@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 const Anuncio = require('../models/Anuncio');
 const { query,validationResult} = require('express-validator');
+const config = require('../lib/config');
+
 
 const tags = ["work", "lifestyle", "motor", "mobile"];
 
@@ -24,8 +26,8 @@ router.get('/', async (req, res, next) => {
     try {
        
         //Valores por defecto
-        const start = typeof req.query.start === 'undefined' ? 1 : parseInt(req.query.start);
-        const limit = typeof req.query.limit === 'undefined' ? 8 : parseInt(req.query.limit);
+        const start = typeof req.query.start === 'undefined' ? config.START : parseInt(req.query.start);
+        const limit = typeof req.query.limit === 'undefined' ? config.LIMIT : parseInt(req.query.limit);
         const filter = {};
         const { tag, venta, nombre, sort, precio, fields } = req.query;
 

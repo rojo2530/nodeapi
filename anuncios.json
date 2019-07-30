@@ -2,28 +2,28 @@
         {      
             "nombre": "Bicicleta",      
             "venta": true,      
-            "precio": 230.15,      
+            "precio": 230,      
             "foto": "bici.jpg",      
             "tags": [ "lifestyle", "motor"]    
         },    
         {      
             "nombre": "iPhone 7",      
             "venta": false,      
-            "precio": 350.00,      
+            "precio": 350,      
             "foto": "iphone7.jpg",      
             "tags": [ "lifestyle", "mobile"]    
         },
         {
             "nombre": "iPhone XR",      
             "venta": true,      
-            "precio": 350.00,      
+            "precio": 350,      
             "foto": "iphonexr.jpg",      
             "tags": [ "lifestyle", "mobile"]    
         },  
         {
             "nombre": "Patinete",      
             "venta": false,      
-            "precio": 50.00,      
+            "precio": 50,      
             "foto": "patinete.jpg",      
             "tags": [ "lifestyle", "motor"]    
 
