@@ -11,7 +11,7 @@ router.get('/',
     query('venta').optional().isBoolean().withMessage('must be a boleean value'),
     query('tag').optional().isIn(tags).withMessage('is not valid, only ' + tags.join(',')),
     query('nombre').optional().isAlphanumeric().withMessage('is not valid'),
-    query('start').optional().isInt({gte: 0}).withMessage('must be a positive number'),
+    query('start').optional().isInt({gt: 0}).withMessage('start must be a positive number'),
     query('limit').optional().isInt({gt: 0}).withMessage('must be a positive number'),
     query('precio').optional().matches('(^[0-9]+-[0-9]*$)|(^-?[0-9]+$)').withMessage('is not valid'),
 
@@ -22,8 +22,11 @@ router.get('/',
 
 router.get('/', async (req, res, next) => {
     try {
-       
-        //Valores por defecto
+
+        const port = req.app.settings.port;
+        const host = req.host;
+        console.log(port);
+        const url = `http://${host}:${port}/images/`;
         const start = typeof req.query.start === 'undefined' ? 1 : parseInt(req.query.start);
         const limit = typeof req.query.limit === 'undefined' ? 8 : parseInt(req.query.limit);
         const filter = {};
@@ -39,6 +42,7 @@ router.get('/', async (req, res, next) => {
         if (typeof precio !== 'undefined')  filter.precio = getPriceFilter(precio);
         
         const anuncios = await Anuncio.list({filter: filter, start, limit, sort, fields});
+        anuncios.forEach(anuncio => anuncio.foto = url + anuncio.foto);  //añadimos la url base de la foto
         res.json({sucess: true, results: anuncios});
         return;
     } catch (err) {
