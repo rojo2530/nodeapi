@@ -45,7 +45,6 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  console.log(req.originalUrl);
   // comprobar error de validación que hemos hecho con el middleware express-validator
   if (err.array) { //error de validacion
     err.status = 422;
