@@ -21,11 +21,11 @@ For your data, use MongoDB , where you save a list of ads with the following Sch
 
 ### Description of fields
 
-* nombre: It's the ad name.
-* venta: if it's true then is a ad sale, if not if a buy sale.
-* precio: The product price.
-* foto: it's the name of picture file.
-* tags: It may be some of these 4: work, lifestyle, mobile and motor.
+* **nombre**: It's the ad name.
+* **venta**: if it's true then is a ad sale, if not if a buy sale.
+* **precio**: The product price.
+* **foto**: it's the name of picture file.
+* **tags**: It may be some of these 4: work, lifestyle, mobile and motor.
 
 **tags** only can only be work, lifestyle, mobile or motor.
 
@@ -33,7 +33,7 @@ Both the API and the view return a list of ads using filters that are passed as 
 
 ## Install
 
-* Clone Repo with 
+* Clone Repo with https://github.com/rojo2530/nodeapi.git
 * Inside folder , execut `npm install`
 * Make sure MongoDB server is running, after that execute `npm run installDB` (this command import data of ads)
 * Finally execute `npm run dev` , running en dev mode, for production mode run `npm run start`
