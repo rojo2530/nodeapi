@@ -7,7 +7,7 @@
     "dev": "cross-env DEBUG=nodeapi:* nodemon",
     "prod": "cross-env NODE_ENV=production npm start",
     "installDB": "node lib/install_db.js",
-    "eslint": "./node_modules/.bin/eslint ."
+    "eslint": "eslint --ignore-path .gitignore ."
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
