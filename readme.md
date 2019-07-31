@@ -101,7 +101,7 @@ List ads, by default show only first 8 ads, for example:
 * **start** [Positive Integer]: It's page number, by default is 1 if it's not present, it's a positive Integer.
 * **limit** [Positive Integer]: It's the number of items displayed per page, by default is 8.
 * **tag:** Filter by tag, only can filter with one tag, you can only filter by a tag that can be work, lifestyle, mobile or motor.
-* **nombre**: Filter by name, you can only filter by a tag that can be work, lifestyle, mobile or work.
+* **nombre**: Filter by name, you can search by the beginning of a name.
 * **sort**: Sort by a field, for example by price, or by name, If we put a '-' in front of it will sort in reverse order.
 * **venta**[Boleean]: If the ad is sale or buy.
 * **fields**: You can show only the fields you put in fields
@@ -261,5 +261,8 @@ const config = {
 }
 ```
 
+## Development Notes
+
+At the moment the functionality of the view and the api is very similar and that is why the code is very similar, it has been preferred not to refactor the code in case in the future you have different functionalities.
 
 
