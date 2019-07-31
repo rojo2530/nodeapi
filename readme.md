@@ -250,7 +250,16 @@ The only difference is the route, which in the case of the view would be:
 
 `http://localhost:7000`
 
+## Default Values
 
+By default there are a number of varibles that can be configured in the lib/config.js file:
+
+```
+const config = {
+    START: 1,
+    LIMIT: 8
+}
+```
 
 
 

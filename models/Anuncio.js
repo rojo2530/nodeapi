@@ -29,7 +29,6 @@ const anuncioSchema = mongoose.Schema({
         type: [String],
         enum: ['work', 'mobile', 'lifestyle', 'motor'],
         validate: [(value) => value.length > 0, 'Tags can not be empty'],
-        unique: true
     }
 });
 

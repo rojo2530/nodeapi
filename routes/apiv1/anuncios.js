@@ -23,9 +23,7 @@ router.get('/',
 
 router.get('/', async (req, res, next) => {
     try {
-        const port = req.app.settings.port;
-        const host = req.hostname;
-        const url = `http://${host}:${port}/images/`;
+        const url = `http://${req.hostname}:${req.app.settings.port}/images/`;
         const start = typeof req.query.start === 'undefined' ? config.START : parseInt(req.query.start);
         const limit = typeof req.query.limit === 'undefined' ? config.LIMIT : parseInt(req.query.limit);
         const filter = {};
