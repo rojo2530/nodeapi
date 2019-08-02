@@ -265,4 +265,6 @@ const config = {
 
 At the moment the functionality of the view and the api is very similar and that is why the code is very similar, it has been preferred not to refactor the code in case in the future you have different functionalities.
 
+You can run eslint with next script `npm run eslint`
+
 
