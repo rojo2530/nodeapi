@@ -42,6 +42,7 @@ app.use('/apiv1/tags', require('./routes/apiv1/tags'));
   */
 
 app.use('/',      require('./routes/index'));
+app.use('/change-locale', require('./routes/change-locale'));
 
 
 // catch 404 and forward to error handler
