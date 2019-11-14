@@ -2,10 +2,11 @@
 
 const express = require('express');
 const router = express.Router();
-const tagsApiController = require('../../controllers/tagsApiController');
+const loginController = require('../controllers/loginController');
 
-const { index } = tagsApiController();
+const { index, post } = loginController();
 
 router.get('/', index);
+router.post('/', post);
 
 module.exports = router;

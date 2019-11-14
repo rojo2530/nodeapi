@@ -194,7 +194,7 @@
     
     }
 
-    .logout-button {
+    .logout-button, .language {
         display: none;
     }
 

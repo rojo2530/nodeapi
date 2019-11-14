@@ -33,10 +33,15 @@
     <ul class="navbar-list">
       <li class="navbar-item"><a href="/"><%= __('Home') %></a></li>
      
-      <li class="navbar-item"><a href="#buscar">
-          <input type="text" class="search-textbox-mobile" placeholder=<%=__('Search...') %> >
-        </a></li>
+      
       <li class="navbar-item"><a href="index.html"><%= __('Close Session') %></a></li>
+      <li class="navbar-item">
+       
+        <% getLocales().forEach( locale => { %>
+       <a href="/change-locale/<%= locale %>"><span class="flag-icon flag-icon-<%= locale %>"></span></a>&nbsp;
+     <% }) %>
+   
+    </li>
     </ul>
     <div class="search">
       <input type="text" class="search-textbox" placeholder=<%=__('Search...') %>>
@@ -45,13 +50,22 @@
       <button class="logout-button" value="Cerrar Sesión">
         <a href="index.html"><%= __('Search') %></a>
     </button>
-    <% getLocales().forEach( locale => { %>
+    </div>
+    <div class="logout">
+      <button class="logout-button" value="Cerrar Sesión">
+        <a href="/logout"><%= __('Logout') %></a>
+    </button>
+    </div>
+    <div class="language">
+      <% getLocales().forEach( locale => { %>
         <a href="/change-locale/<%= locale %>"><span class="flag-icon flag-icon-<%= locale %>"></span></a>&nbsp;
     <% }) %>
+    </div>
+   
       
   
   
-  </div>
+  
   </nav>
 
   

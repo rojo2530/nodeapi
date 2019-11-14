@@ -5,6 +5,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+
 
 var app = express();
 
@@ -15,7 +19,7 @@ app.engine('html', require('ejs').__express);
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -27,7 +31,7 @@ app.use(i18n.init);
 /**
  * Conexion a la base de datos
  */
-require('./lib/connectMongoose');
+const mongooseConnection = require('./lib/connectMongoose');
 require('./models/Anuncio');
 
 /**
@@ -36,6 +40,29 @@ require('./models/Anuncio');
 app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
 app.use('/apiv1/tags', require('./routes/apiv1/tags'));
 
+/**
+ * Inicializamos y cargamos la sesión del usuario que hacce la petición
+ */
+app.use(session({
+  name: 'nodeapi-session',
+  secret: 'asdasdsad12323asdasdasdfgfgh',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: true, //solo mandar por https
+    maxAge: 1000 * 60 * 60 * 24 * 2// caducar a los 2 días de inactividad
+  },
+  store: new MongoStore({
+    // le pasamos como conectarse a la base de datos
+    mongooseConnection
+  })
+}));
+
+// middleware para tener acceso a la sesión en las vistas
+app.use((req, res ,next) => {
+  res.locals.session = req.session;
+  next();
+});
 
  /**
   * Rutas para las vistas
@@ -43,6 +70,8 @@ app.use('/apiv1/tags', require('./routes/apiv1/tags'));
 
 app.use('/',      require('./routes/index'));
 app.use('/change-locale', require('./routes/change-locale'));
+app.use('/login', require('./routes/login'));
+app.use('/logout', require('./routes/lougout'));
 
 
 // catch 404 and forward to error handler

@@ -2,16 +2,10 @@
 
 const express = require('express');
 const router = express.Router();
+const localeController = require('../controllers/localeController');
 
-router.get('/:locale', (req, res, next) => {
-  // recuperar el código de locale que nos pasan
-  const locale = req.params.locale;
-  // guardar la página de la que venimos para poder volver
-  const backTo = req.get('referer');
-  // establecer una cookie con el nuevo locale
-  res.cookie('nodeapi-locale', locale, {maxAge: 1000 * 60 * 60 * 24 * 30});
-  // redireccionar al usuario a la página donde estaba
-  res.redirect(backTo);
-});
+const { changeLocale } = localeController();
+
+router.get('/:locale', changeLocale);
 
 module.exports = router;

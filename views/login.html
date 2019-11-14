@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <title>NodePop Login</title>
+</head>
+<body>
+  <div class="page-login">
+    <div class="ui centered grid container">
+      <div class="nine wide column">
+          <% if (error) { %>
+            <div class="ui icon warning message">
+              <i class="lock icon"></i>
+              <div class="content">
+                <div class="header">
+                  <%=__('Login failed!') %>
+                </div>
+                <p>You might have misspelled your username or password!</p>
+              </div>
+            </div>
+          <% } %>
+        <div class="ui fluid card">
+          <div class="content">
+          <form class="ui form" method="POST">
+            <div class="field">
+              <label>User</label>
+              <input type="text" name="email" placeholder="User" value="<%= email %>"> 
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <input type="password" name="password" placeholder="Password">
+            </div>
+            <button class="ui primary labeled icon button" type="submit">
+              <i class="unlock alternate icon"></i>
+              Login
+            </button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

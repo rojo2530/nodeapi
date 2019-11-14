@@ -4,17 +4,22 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "start-ssl": "nodemon ./bin/www_ssl",
     "dev": "cross-env DEBUG=nodeapi:* nodemon",
     "prod": "cross-env NODE_ENV=production npm start",
     "installDB": "node lib/install_db.js",
     "eslint": "eslint --ignore-path .gitignore ."
   },
   "dependencies": {
+    "bcrypt": "^3.0.6",
+    "connect-mongo": "^3.1.2",
     "cookie-parser": "~1.4.4",
     "cross-env": "^5.2.1",
     "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
+    "express-session": "^1.17.0",
     "express-validator": "^6.1.1",
     "flag-icon-css": "^3.4.5",
     "http-errors": "~1.6.3",
@@ -23,6 +28,7 @@
     "mongoose": "^5.6.6",
     "mongoose-unique-array": "^0.3.2",
     "morgan": "~1.9.1",
+    "multer": "^1.4.2",
     "npm": "^6.13.0"
   },
   "devDependencies": {
