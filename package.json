@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "start:worker": "node ./rabbitmq/worker.js",
     "start-ssl": "nodemon ./bin/www_ssl",
     "dev": "cross-env DEBUG=nodeapi:* nodemon",
     "prod": "cross-env NODE_ENV=production npm start",
@@ -11,6 +12,7 @@
     "eslint": "eslint --ignore-path .gitignore ."
   },
   "dependencies": {
+    "amqplib": "^0.5.5",
     "bcrypt": "^3.0.6",
     "connect-mongo": "^3.1.2",
     "cookie-parser": "~1.4.4",
@@ -25,6 +27,8 @@
     "http-errors": "~1.6.3",
     "i18n": "^0.8.4",
     "install": "^0.13.0",
+    "jimp": "^0.8.5",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.6",
     "mongoose-unique-array": "^0.3.2",
     "morgan": "~1.9.1",

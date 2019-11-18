@@ -2,9 +2,11 @@
 
 const Anuncio = require('../models/Anuncio');
 const getPriceFilter = require('../lib/aux');
-const config = require('../lib/config')
+const config = require('../lib/config');
+const createTask = require('../rabbitmq/publisher');
+const path = require('path');
 
-
+const imagesPath = path.join('..', 'public', 'images', '/');
 
 const anunciosApiController = () => {
   return {
@@ -56,6 +58,11 @@ const anunciosApiController = () => {
           const anuncioSaved = await anuncio.save();
           //mandar a rabbitmq
           res.json({ sucess: true, result: anuncioSaved });
+          createTask({
+            texto: 'Crear thumbnail para  ' + data.foto + ' ' + Date.now(),
+            imagePath: imagesPath + data.foto,
+            quality: 80
+          }).catch(err => console.log(err));
       } catch (err) {
           next(err)
       }

@@ -2,6 +2,8 @@
 
 const Usuario = require('../models/Usuario');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 
 const loginController = () => {
   return {
@@ -50,7 +52,26 @@ const loginController = () => {
         }
         res.redirect('/login');
       });
+    },
+
+    loginJWT: async (req, res, next) => {
+      try {
+        const { email, password } = req.body;
+        const user = await Usuario.findOne({ email });
+        if (!user || !await bcrypt.compare(password, user.password)) {
+          res.json({ success: false, error: 'Invalid credentials' });
+          return;
+        }
+        //creamos un jwt si hemos llegado hasta aquí
+        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+          expiresIn: '2D',
+        });
+        res.json({ success: true, token }); 
+      } catch(err) {
+        next(err);
+      }
     }
+
     
   }
 }

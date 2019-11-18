@@ -37,6 +37,9 @@ require('./models/Anuncio');
 /**
  * Rutas para la API
  */
+app.use('/apiv1/login', require('./routes/apiv1/login'));
+//Cualquier llamada a la api, excepto el login tiene que tener un token valido
+app.use('/apiv1/*', require('./lib/jwtAuth'));
 app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
 app.use('/apiv1/tags', require('./routes/apiv1/tags'));
 
