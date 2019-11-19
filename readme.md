@@ -269,7 +269,11 @@ For example , if any field is missing it will give an error:
     "error": "Anuncio validation failed: venta: Path `venta` is required., precio: Path `precio` (0) is less than minimum allowed value (1)."
 }
 ```
-Upload File, upload image to folder public/images, too add task to rabbitmq for creating thumbnail. Thumnails saves in public/images too. 
+Upload File: upload image to folder public/images, too add task to rabbitmq for creating thumbnail. Thumnails saves in public/images too. 
+A request example from Postman:
+
+(https://file.io/hY8bYk)
+
 
 ## Views
 
