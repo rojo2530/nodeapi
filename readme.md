@@ -5,10 +5,24 @@
 * MongoDB
 * Node and NPM
 * Git (not necessary but recommended)
+* RabbitMQ Server (coud be local or using free account in https://www.cloudamqp.com/)
+* SSL certificate, app runs in SSL mode, you could use for example https://github.com/FiloSottile/mkcert
+
+## Configure
+You have to create a .env file, the app contains .env.example like guide. 
+You have to add this lines:
+
+* MONGODB_URL : URL for MongoDB connection
+* RABBITMQ_URL: URL for rabbitmq connection
+* JWT_SECRET: Secret password for generate JSON web token.
+
+You have too create a folder cert , and inside puts certs public and private key.
 
 ## Introduction
 
 Nodeapi is an example of API application using Node and Express, has two parts, one for the API part and one for the view.
+For API use JSON web token (JWT) for authentication , have to make a request to http://localhost:7000/apiv1/anuncios/login 
+This endpoint return a token which use for another request.
 
 For your data, use MongoDB , where you save a list of ads with the following Schema:
 
@@ -36,11 +50,26 @@ Both the API and the view return a list of ads using filters that are passed as 
 * Clone Repo with https://github.com/rojo2530/nodeapi.git
 * Inside folder , execut `npm install`
 * Make sure MongoDB server is running, after that execute `npm run installDB` (this command import data of ads)
-* Finally execute `npm run dev` , running en dev mode, for production mode run `npm run start`
+* execute `npm run start:worker`
+* Finally execute `npm run start-ssl` , running en dev mode, for production mode run `npm run start`
 
 Note: By default , server is running in port 7000
 
 ## API Methods
+
+### Login (POST)
+
+`http://localhost:3000/apiv1/login` , by default you have to use in the body of request
+
+user: admin@example.com
+password: 1234
+
+This request return a token which you have to use in any request.
+This token can be passed on the request in the following ways:
+
+* Body
+* Query parameter , name token
+* Header with name Authorization
 
 ### Tags list (GET)
 
