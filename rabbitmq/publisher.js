@@ -13,7 +13,7 @@ const createTransport = async () => {
   await channel.assertQueue(queueName, {
     durable: true,
   });
-
+  console.log('NodeApi publisher connected to Rabbitmq Server');
   return channel;
 }
 
@@ -22,7 +22,7 @@ const createTask = async (message) => {
   channel.sendToQueue(queueName, Buffer.from(JSON.stringify(message)), {
     persistent: true,
   });
-  console.log(`publicado "${message.texto}"`);
+  console.log(`Publish "${message.texto}"`);
 }
 
 module.exports = createTask;

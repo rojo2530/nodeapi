@@ -7,7 +7,7 @@
     "start:worker": "node ./rabbitmq/worker.js",
     "start-ssl": "nodemon ./bin/www_ssl",
     "dev": "cross-env DEBUG=nodeapi:* nodemon",
-    "prod": "cross-env NODE_ENV=production npm start",
+    "prod": "cross-env NODE_ENV=production npm start-ssl",
     "installDB": "node lib/install_db.js",
     "eslint": "eslint --ignore-path .gitignore ."
   },
