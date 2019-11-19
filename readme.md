@@ -256,7 +256,7 @@ To create a new ad all fields are required and have to be of the following types
 * nombre: String
 * venta: Boleean,
 * precio: Positive Integer,
-* foto: String,
+* foto: Upload File
 * tags: Array of Strings: Each array's element only can be work, lifestyle, mobile or motor.
 
 Note: If repeated tags for example, for example [work, work, mobile], only the only ones will be saved when creating the ad, i.e. it would be [work, mobile]
@@ -269,11 +269,16 @@ For example , if any field is missing it will give an error:
     "error": "Anuncio validation failed: venta: Path `venta` is required., precio: Path `precio` (0) is less than minimum allowed value (1)."
 }
 ```
+Upload File, upload image to folder public/images, too add task to rabbitmq for creating thumbnail. Thumnails saves in public/images too. 
 
 ## Views
 
 The other part of the app is the front of the ads view.
 Filters are the same as in the api and are made using query parameters.
+For views you have to login , credentials save in sessión (with MongoDB) , credentials are:
+
+user: admin@example.com
+password: 1234
 
 The only difference is the route, which in the case of the view would be:
 
