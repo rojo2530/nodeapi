@@ -7,6 +7,7 @@
 * Git (not necessary but recommended)
 * RabbitMQ Server (coud be local or using free account in https://www.cloudamqp.com/)
 * SSL certificate, app runs in SSL mode, you could use for example https://github.com/FiloSottile/mkcert
+* pm2 (optional) https://pm2.keymetrics.io/
 
 ## Configure
 You have to create a .env file, the app contains .env.example like guide. 
@@ -51,9 +52,13 @@ Both the API and the view return a list of ads using filters that are passed as 
 * Inside folder , execut `npm install`
 * Make sure MongoDB server is running, after that execute `npm run installDB` (this command import data of ads)
 * execute `npm run start:worker`
-* Finally execute `npm run start-ssl` , running en dev mode, for production mode run `npm run start`
+* Finally execute `npm run start-ssl` , running en dev mode, for production mode run `npm run prod`
 
 Note: By default , server is running in port 7000
+
+Another way to execute it would be through pm2:
+
+`pm2.cmd start .\ecosystem.config.js`
 
 ## API Methods
 
@@ -256,7 +261,7 @@ To create a new ad all fields are required and have to be of the following types
 * nombre: String
 * venta: Boleean,
 * precio: Positive Integer,
-* foto: String,
+* foto: Upload File
 * tags: Array of Strings: Each array's element only can be work, lifestyle, mobile or motor.
 
 Note: If repeated tags for example, for example [work, work, mobile], only the only ones will be saved when creating the ad, i.e. it would be [work, mobile]
@@ -269,11 +274,22 @@ For example , if any field is missing it will give an error:
     "error": "Anuncio validation failed: venta: Path `venta` is required., precio: Path `precio` (0) is less than minimum allowed value (1)."
 }
 ```
+Upload File: upload image to folder public/images, too add task to rabbitmq for creating thumbnail. Thumnails saves in public/images too. 
+A request example from Postman:
+
+(https://file.io/hY8bYk)
+
 
 ## Views
 
 The other part of the app is the front of the ads view.
 Filters are the same as in the api and are made using query parameters.
+For views you have to login , credentials save in sessión (with MongoDB) , credentials are:
+
+user: admin@example.com
+password: 1234
+
+The app use i18n for languages, in front view, you chan choose language doing click in the flag. 
 
 The only difference is the route, which in the case of the view would be:
 
