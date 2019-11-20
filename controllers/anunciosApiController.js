@@ -4,7 +4,6 @@ const Anuncio = require('../models/Anuncio');
 const getPriceFilter = require('../lib/aux');
 const config = require('../lib/config');
 const createTask = require('../rabbitmq/publisher');
-const path = require('path');
 
 
 const anunciosApiController = () => {
