@@ -274,10 +274,34 @@ For example , if any field is missing it will give an error:
     "error": "Anuncio validation failed: venta: Path `venta` is required., precio: Path `precio` (0) is less than minimum allowed value (1)."
 }
 ```
-Upload File: upload image to folder public/images, too add task to rabbitmq for creating thumbnail. Thumnails saves in public/images too. 
+Upload File: upload image to folder public/images, too add task to rabbitmq for creating thumbnail. Thumbnails saves in public/images too. 
 A request example from Postman:
 
 (https://file.io/hY8bYk)
+
+For auth jwt , you can use header Authorization, for example if you use curl:
+
+```
+curl -X POST \
+  https://localhost:7000/apiv1/anuncios \
+  -H 'Accept: */*' \
+  -H 'Accept-Encoding: gzip, deflate' \
+  -H 'Authorization: token jwt' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Length: 1279345' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -H 'Host: localhost:7000' \
+  -H 'Postman-Token: f1ca9d77-b86c-48fe-bf1e-861928cec438,9197d28c-9d55-4722-b366-a3074b7c6650' \
+  -H 'User-Agent: PostmanRuntime/7.18.0' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+  -F nombre=camiseta \
+  -F foto=@/C:/Users/Usuario/Pictures/Breaking-Bad.jpg \
+  -F venta=true \
+  -F precio=45 \
+  -F 'tags[0]=lifestyle'
+ ```
 
 
 ## Views
