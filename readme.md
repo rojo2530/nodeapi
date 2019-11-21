@@ -19,6 +19,11 @@ You have to add this lines:
 
 You have too create a folder cert , and inside puts certs public and private key.
 
+## Test
+You can test API with next command:
+
+`npm run test`
+
 ## Introduction
 
 Nodeapi is an example of API application using Node and Express, has two parts, one for the API part and one for the view.
