@@ -12,7 +12,7 @@ const { index, post } = anunciosApiController();
 
 const tags = ["work", "lifestyle", "motor", "mobile"];
 
-// SET STORAGE
+//SET STORAGE
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
 			cb(null, path.join(__dirname, '..', '..', 'public', 'images'));

@@ -11,4 +11,5 @@ if (!urlConnection) {
 
 const connectionPromise = amqplib.connect(urlConnection);
 
+
 module.exports = connectionPromise;

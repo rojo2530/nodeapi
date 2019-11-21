@@ -1,12 +1,13 @@
 'use strict';
 
-const connectionPromise = require('./connectAMQP');
+//No lo hago así , porque sino el supertest se queda esperando la promesa
+// const connectionPromise = require('./connectAMQP');
 
 const queueName = 'thumbnail';
 
 const createTransport = async () => {
   //Conectamos al servidor AMPQ
-  const conn = await connectionPromise;
+  const conn = await require('./connectAMQP');
   //creamos un canal
   const channel = await conn.createChannel();
   //aseguramos de que la cola existe
@@ -16,6 +17,7 @@ const createTransport = async () => {
   console.log('NodeApi publisher connected to Rabbitmq Server');
   return channel;
 }
+
 
 const createTask = async (message) => {
   const channel = await createTransport();
