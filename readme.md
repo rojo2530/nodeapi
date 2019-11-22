@@ -71,7 +71,7 @@ Both the API and the view return a list of ads using filters that are passed as 
 
 `http://localhost:3000/apiv1/login` , by default you have to use in the body of request
 
-user: admin@example.com
+user: user@example.com
 password: 1234
 
 This request return a token which you have to use in any request.
