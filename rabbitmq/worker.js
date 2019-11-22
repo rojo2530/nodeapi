@@ -8,7 +8,6 @@ const queueName = 'thumbnail';
 
 const imagesPath = path.join(__dirname, '..', 'public', 'images', '/');
 
-
 const createTransport = async () => {
   try {
     //Conectamos al servidor AMPQ

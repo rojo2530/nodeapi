@@ -4,7 +4,6 @@ const Usuario = require('../models/Usuario');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-
 const loginController = () => {
   return {
     /**
@@ -21,8 +20,7 @@ const loginController = () => {
     post: async (req, res, next) => {
       try {
         const { email, password }  = req.body;
-        console.log('Email: ', email);
-        console.log('Password: ', password);
+        
         //buscar el usuario en la base de datos
         const usuario = await Usuario.findOne({ email: email })
         if (!usuario || !await bcrypt.compare(password, usuario.password)) {
@@ -57,6 +55,8 @@ const loginController = () => {
     loginJWT: async (req, res, next) => {
       try {
         const { email, password } = req.body;
+        console.log('Email: ', email);
+        console.log('Password: ', password);
         const user = await Usuario.findOne({ email });
         if (!user || !await bcrypt.compare(password, user.password)) {
           res.json({ success: false, error: 'Invalid credentials' });
@@ -71,8 +71,6 @@ const loginController = () => {
         next(err);
       }
     }
-
-    
   }
 }
 

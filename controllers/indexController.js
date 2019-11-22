@@ -3,10 +3,8 @@ const config = require('../lib/config');
 const getPriceFilter = require('../lib/aux');
 const Anuncio = require('../models/Anuncio');
 
-
 const indexController = () => {
   return {
-    
     index: async (req, res, next) => {
       try {
           //Valores por defecto
@@ -31,7 +29,6 @@ const indexController = () => {
           return;
       }
     },
-
   }
 }
 
