@@ -31,7 +31,6 @@ test('[AUTH] POST /login should return a success true', async () => {
     password: '1234'
   }
   const response = await request(app).post('/apiv1/login').send(credentials).expect(200);
-  console.log(response.body);
   expect(response.body.success).toBe(true);
 });
 
