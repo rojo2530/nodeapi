@@ -19,6 +19,20 @@ You have to add this lines:
 
 You have too create a folder cert , and inside puts certs public and private key.
 
+## Install
+
+* Clone Repo with https://github.com/rojo2530/nodeapi.git
+* Inside folder , execut `npm install`
+* Make sure MongoDB server is running, after that execute `npm run installDB` (this command import data of ads)
+* execute `npm run start:worker`
+* Finally execute `npm run start-ssl` , running en dev mode, for production mode run `npm run prod`
+
+Note: By default , server is running in port 7000
+
+Another way to execute it would be through pm2:
+
+`pm2.cmd start .\ecosystem.config.js`
+
 ## Test
 You can test API with next command:
 
@@ -50,20 +64,6 @@ For your data, use MongoDB , where you save a list of ads with the following Sch
 **tags** only can only be work, lifestyle, mobile or motor.
 
 Both the API and the view return a list of ads using filters that are passed as query parameters.
-
-## Install
-
-* Clone Repo with https://github.com/rojo2530/nodeapi.git
-* Inside folder , execut `npm install`
-* Make sure MongoDB server is running, after that execute `npm run installDB` (this command import data of ads)
-* execute `npm run start:worker`
-* Finally execute `npm run start-ssl` , running en dev mode, for production mode run `npm run prod`
-
-Note: By default , server is running in port 7000
-
-Another way to execute it would be through pm2:
-
-`pm2.cmd start .\ecosystem.config.js`
 
 ## API Methods
 
