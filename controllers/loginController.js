@@ -55,8 +55,6 @@ const loginController = () => {
     loginJWT: async (req, res, next) => {
       try {
         const { email, password } = req.body;
-        console.log('Email: ', email);
-        console.log('Password: ', password);
         const user = await Usuario.findOne({ email });
         if (!user || !await bcrypt.compare(password, user.password)) {
           res.json({ success: false, error: 'Invalid credentials' });
