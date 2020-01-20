@@ -16,6 +16,8 @@ Statics are served by Nginx, with header:
 
 X-Owner: rojo2530
 
+and supports http2 protocol.
+
 Application is served by Express. 
 
 ### Exercise 2
