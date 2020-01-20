@@ -1,5 +1,30 @@
 # NodeAPI
 
+## Deploy in AWS
+
+### Exercise 1
+
+You can access to web application in:
+
+https://rojo2530.site 
+
+and the API, for example in:
+
+https://rojo2530.site/apiv1/tags
+
+Statics are served by Nginx, with header:
+
+X-Owner: rojo2530
+
+Application is served by Express. 
+
+### Exercise 2
+
+You can access to static web page with IP:
+
+http://3.20.71.226/
+
+
 ## Requirements 
 
 * MongoDB
