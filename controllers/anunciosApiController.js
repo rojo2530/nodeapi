@@ -16,20 +16,20 @@ const anunciosApiController = () => {
           const start = typeof req.query.start === 'undefined' ? config.START : parseInt(req.query.start);
           const limit = typeof req.query.limit === 'undefined' ? config.LIMIT : parseInt(req.query.limit);
           const filter = {};
-          const { tag, venta, nombre, sort, precio, fields } = req.query;
+          const { tag, type, name, sort, price, fields } = req.query;
   
           //Si buscamos por nombre, no va a ser por nombre exacto sino que empiece por ese nombre, omitiendo mayúsculas
-          if (nombre)  filter.nombre = new RegExp("^" + nombre, 'i');
+          if (name)  filter.name = new RegExp("^" + name, 'i');
           
-          if (typeof venta !== 'undefined')  filter.venta = venta;
+          if (typeof type !== 'undefined')  filter.type = type;
           
           if (tag) filter.tags = tag;
           
-          if (typeof precio !== 'undefined')  filter.precio = getPriceFilter(precio);
+          if (typeof price !== 'undefined')  filter.price = getPriceFilter(price);
           
           const anuncios = await Anuncio.list({filter: filter, start, limit, sort, fields});
           anuncios.forEach(anuncio => anuncio.foto = url + anuncio.foto);  //añadimos la url base de la foto
-          res.json({sucess: true, results: anuncios});
+          res.json({sucess: true, count: anuncios.length, results: anuncios});
           return;
       } catch (err) {
           next(err);
@@ -66,5 +66,6 @@ const anunciosApiController = () => {
     }
   }
 }
+
 
 module.exports = anunciosApiController;

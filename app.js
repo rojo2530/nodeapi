@@ -43,10 +43,25 @@ require('./models/Anuncio');
  * Rutas para la API
  */
 app.use('/apiv1/login', require('./routes/apiv1/login'));
+app.use('/apiv1/register', require('./routes/apiv1/register'));
+app.get('/apiv1/checkToken', require('./lib/jwtAuth'), function(req, res) {
+  const user = {
+    _id: req._id,
+    nickname: req.nickname,
+    email: req.email,
+  }
+  res.json({ sucesss: true, result: user });
+});
+app.get('/apiv1/logout', require('./lib/jwtAuth'), function(req, res) {
+  res.clearCookie('token');
+  return res.sendStatus(200);
+});
+
+app.use('/apiv1/tags', require('./routes/apiv1/tags'));
+app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
 //Cualquier llamada a la api, excepto el login tiene que tener un token valido
 app.use('/apiv1/*', require('./lib/jwtAuth'));
 app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
-app.use('/apiv1/tags', require('./routes/apiv1/tags'));
 
 /**
  * Inicializamos y cargamos la sesión del usuario que hacce la petición

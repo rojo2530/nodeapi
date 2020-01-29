@@ -1,75 +1,190 @@
-[    
-        {      
-            "nombre": "Bicicleta",      
-            "venta": true,      
-            "precio": 230,      
-            "foto": "bici.jpg",      
-            "tags": [ "lifestyle", "motor"]    
-        },    
-        {      
-            "nombre": "iPhone 7",      
-            "venta": false,      
-            "precio": 350,      
-            "foto": "iphone7.jpg",      
-            "tags": [ "lifestyle", "mobile"]    
-        },
-        {
-            "nombre": "iPhone XR",      
-            "venta": true,      
-            "precio": 350,      
-            "foto": "iphonexr.jpg",      
-            "tags": [ "lifestyle", "mobile"]    
-        },  
-        {
-            "nombre": "Patinete",      
-            "venta": false,      
-            "precio": 50,      
-            "foto": "patinete.jpg",      
-            "tags": [ "lifestyle", "motor"]    
+[
+    {  
+        "name":"PS4Pro",
+        "description": "Compro PS4 Pro con menos de 1 año de uso",
+        "price":200.99,
+        "type":"buy",
+        "photo":"/images/anuncios/ps4pro.jpg",
+        "tags":[  
+            "lifestyle"
+        ]
+    },
+    {  
+        "name":"XBOX OneX",
+        "price":170.05,
+        "description": "Vendo XBOX One X como nueva. No tengo tiempo para jugar.",
+        "type":"sell",
+        "photo":"/images/anuncios/xbox.jpg",
+        "tags":[  
+            "lifestyle"
+        ]
+    },
+    {  
+        "name":"Raton Gaming Razer Mamba",
+        "price":35.50,
+        "description": "El mejor ratón gamer del mercado. Como nuevo (1 año)",
+        "type":"sell",
+        "photo":"/images/anuncios/ratonmamba.jpg",
+        "tags":[  
+            "lifestyle",
+            "work",
+            "mobile"
+        ]
+    },
+    {  
+        "name":"Teclado Gaming Razer Chroma",
+        "price":70.00,
+        "description": "Busco teclado razer en buen estado.",
+        "type":"buy",
+        "photo":"/images/anuncios/tecladorazer.jpg",
+        "tags":[  
+            "lifestyle",
+            "work",
+            "mobile"
+        ]
+    },
+    {  
+        "name":"Gráfica Gaming 1080ti",
+        "price":400.00,
+        "description": "Todavía una bestia parda en el 2k.",
+        "type":"buy",
+        "photo":"/images/anuncios/1080ti.jpg",
+        "tags":[  
+            "lifestyle",
+            "work"
+        ]
+    },
+    {  
+        "name":"PC Gaming (i7 6700K)",
+        "price":700.00,
+        "description": "Acabo de tener un hijo... se me acabo el gaming :)",
+        "type":"sell",
+        "photo":"/images/anuncios/pcgaming.jpg",
+        "tags":[  
+            "lifestyle",
+            "work"
+        ]
+    },
+    {  
+        "name":"Apartamento en Marbella",
+        "price":5000000.00,
+        "description": "Vendo apartamento en primera linea de playa por no tener ni para pargar el seguro.",
+        "type":"sell",
+        "photo":"/images/anuncios/apartamento.jpg",
+        "tags":[  
+            "lifestyle"
+        ]
+    },
+    {  
+        "name":"Calleras Crossfit",
+        "price": 15,
+        "description": "Dejate de romperte las manos en los WODs",
+        "type":"buy",
+        "photo":"/images/anuncios/calleras.jpg",
+        "tags":[  
+            "lifestyle"
+        ]
+    },
+    {  
+        "name":"Comba de Crossfit",
+        "price": 8,
+        "description": "Soy el de las calleras.",
+        "type":"buy",
+        "photo":"/images/anuncios/comba.jpg",
+        "tags":[  
+            "lifestyle"
+        ]
+    },
+    {  
+        "name":"BMW X6 M",
+        "price": 40000.00,
+        "description": "Soy el del apartamento. Con eso lo digo todo.",
+        "type":"sell",
+        "photo":"/images/anuncios/x6.jpg",
+        "tags":[  
+            "lifestyle",
+            "motor"
+        ]
+    },
+    {      
+        "name": "Bicicleta",      
+        "type": "sell",      
+        "price": 230,   
+        "description": "Una pedazo de bicicleta",   
+        "photo": "/images/anuncios/bici.jpg",      
+        "tags": [ "lifestyle", "motor"]    
+    },    
+    {      
+        "name": "iPhone 7",      
+        "type": "buy",      
+        "price": 350,
+        "description": "Un bueno movil pero algo ya antiguo",      
+        "photo": "/images/anuncios/iphone7.jpg",      
+        "tags": [ "lifestyle", "mobile"]    
+    },
+    {
+        "name": "iPhone XR",      
+        "type": "sell",      
+        "price": 350,      
+        "description": "Movil de Apple con precio algo mas barato que el tope de gama",
+        "photo": "/images/anuncios/iphonexr.jpg",      
+        "tags": [ "lifestyle", "mobile"]    
+    },  
+    {
+        "name": "Patinete",      
+        "type": "sell",      
+        "price": 50,
+        "description": "Para ir a todos sitios sin gasar gasolina",      
+        "photo": "/images/anuncios/patinete.jpg",      
+        "tags": [ "lifestyle", "motor"]    
 
-        },
-        {
-            "nombre": "Silla Aeron",      
-            "venta": true,      
-            "precio": 1300,      
-            "foto": "aeron.jpg",      
-            "tags": [ "work"]    
-        },
-        {
-            "nombre": "Infiniti Q60",      
-            "venta": true,      
-            "precio": 50800,      
-            "foto": "infinitiq60.jpg",      
-            "tags": [ "motor"]    
-        },
-        {
-            "nombre": "Honda CBR600",      
-            "venta": true,      
-            "precio": 8000,      
-            "foto": "hondacbr.jpg",      
-            "tags": [ "motor"]    
-        },
-        {
-            "nombre": "Macbook Pro 13",      
-            "venta": false,      
-            "precio": 1200,      
-            "foto": "macbook.jpg",      
-            "tags": [ "work", "mobile"]    
-        },
-        {
-            "nombre": "Gafas de Sol",      
-            "venta": true,      
-            "precio": 100,      
-            "foto": "gafas.jpg",      
-            "tags": [ "lifestyle"]    
-        },
-        {
-            "nombre": "zapatillas deporte",      
-            "venta": true,      
-            "precio": 70,      
-            "foto": "zapatillas.jpg",      
-            "tags": [ "lifestyle"]    
-        }
-
-
-]
+    },
+    {
+        "name": "Silla Aeron",      
+        "type": "buy",      
+        "price": 1300,      
+        "description": "La mejor silla para trabajar",
+        "photo": "/images/anuncios/aeron.jpg",      
+        "tags": [ "work"]    
+    },
+    {
+        "name": "Infiniti Q60",      
+        "type": "sell",      
+        "price": 50800,      
+        "description": "Un coche de altos vuelos",
+        "photo": "/images/anuncios/infinitiq60.jpg",      
+        "tags": [ "motor"]    
+    },
+    {
+        "name": "Honda CBR600",      
+        "type": "buy",      
+        "price": 8000,      
+        "description": "Una gran moto deportiva",
+        "photo": "/images/anuncios/hondacbr.jpg",      
+        "tags": [ "motor"]    
+    },
+    {
+        "name": "Macbook Pro 13",      
+        "type": "sell",      
+        "price": 1200,      
+        "description": "Portatil muy bueno para desarrollar apps de React",
+        "photo": "/images/anuncios/macbook.jpg",      
+        "tags": [ "work", "mobile"]    
+    },
+    {
+        "name": "Gafas de Sol",      
+        "type": "buy",      
+        "price": 100,      
+        "photo": "/images/anuncios/gafas.jpg",
+        "description": "Para protegerte de sol cuando el lorenzo aprieta",      
+        "tags": [ "lifestyle"]    
+    },
+    {
+        "name": "zapatillas deporte",      
+        "type": "buy",      
+        "price": 70,      
+        "description": "Imprescindibles para ir a correr",
+        "photo": "/images/anuncios/zapatillas.jpg",      
+        "tags": [ "lifestyle"]    
+    }
+]  

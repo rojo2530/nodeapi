@@ -3,35 +3,40 @@
 const mongoose = require('mongoose');
 
 //definimos un esquema
-const anuncioSchema = mongoose.Schema({
-    nombre: {
-        type: String,
-        required: true
-    },
-    venta: {
-        type: Boolean,
-        required: true
-    },
-    precio: {
-        type: Number,
-        required: true,
-        validate: {
-            validator: Number.isInteger,
-            message: '{VALUE} is not an integer value'
+const anuncioSchema = mongoose.Schema(
+    {  
+        /**
+        * Nombre del articulo en compra/venta
+        */
+        name: { type: String, required: true, max: 30, index: true },
+        /**
+        * Descripcion del articulo en venta
+        */
+        description: { type: String, max: 100 },
+        /**
+        * Precio del artículo
+        */
+        price: { type: Number, required: true },
+        /**
+        * Tipo de anuncio: compra o venta
+        */
+        type: { type: String, enum: ['buy', 'sell'], required: true, index: true },
+        /**
+        * Foto del artículo
+        */
+        photo: { type: String, required: true },
+        /**
+        * Tags del anuncio
+        */
+        tags: [{ type: String, enum: ['work', 'lifestyle', 'motor', 'mobile'], index: true},]
         },
-        min:1
-    },
-    foto: {
-        type: String,
-        required: true  
-    },
-    tags:{
-        type: [String],
-        enum: ['work', 'mobile', 'lifestyle', 'motor'],
-        validate: [(value) => value.length > 0, 'Tags can not be empty'],
-    }
-});
-
+    {
+        /**
+        * Añade las propiedades de created y updated
+        */
+        timestamps: true,
+    }    
+);
 anuncioSchema.statics.list = function ({filter, start, limit, sort, fields}) {   //No usar aquí arrow functions, ya que este this es un this sintectico inyectoado por Moongoose
     const query = Anuncio.find(filter);
     query.skip((start - 1) * limit) ;   //Pasamos (start -1) * limit, porque skip representa en el número de documentos o registros que nos saltamos y start en la pagina que empezamos, por tanto skip = (start - 1) * limit

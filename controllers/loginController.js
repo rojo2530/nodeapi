@@ -54,21 +54,25 @@ const loginController = () => {
 
     loginJWT: async (req, res, next) => {
       try {
-        const { email, password } = req.body;
-        const user = await Usuario.findOne({ email });
+        const { nickname, password } = req.body;
+        const user = await Usuario.findOne({ nickname });
         if (!user || !await bcrypt.compare(password, user.password)) {
           res.json({ success: false, error: 'Invalid credentials' });
           return;
         }
         //creamos un jwt si hemos llegado hasta aquí
-        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ _id: user._id, email: user.email, nickname: user.nickname }, process.env.JWT_SECRET, {
           expiresIn: '2D',
         });
-        res.json({ success: true, token }); 
+        // res.json({ success: true, token });
+        res.cookie('token', token, { httpOnly: true })
+            .sendStatus(200); 
       } catch(err) {
         next(err);
       }
-    }
+    },
+
+    
   }
 }
 
