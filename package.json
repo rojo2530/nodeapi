@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "nodemon ./bin/www",
     "start:worker": "node ./rabbitmq/worker.js",
     "start-ssl": "nodemon ./bin/www_ssl",
     "dev": "cross-env DEBUG=nodeapi:* nodemon",

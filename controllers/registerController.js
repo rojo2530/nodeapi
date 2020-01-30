@@ -1,8 +1,6 @@
 'use strict';
 
 const Usuario = require('../models/Usuario');
-// const bcrypt = require('bcrypt');
-// const jwt = require('jsonwebtoken');
 
 const registerController = () => {
   return {
@@ -28,6 +26,5 @@ const registerController = () => {
   }
 }
   
-
 module.exports = registerController;
 

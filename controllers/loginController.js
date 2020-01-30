@@ -57,7 +57,10 @@ const loginController = () => {
         const { nickname, password } = req.body;
         const user = await Usuario.findOne({ nickname });
         if (!user || !await bcrypt.compare(password, user.password)) {
-          res.json({ success: false, error: 'Invalid credentials' });
+          const err = new Error('Invalid credentials');
+          err.status = 401;
+          next(err);
+          // res.json({ success: false, error: 'Invalid credentials' });
           return;
         }
         //creamos un jwt si hemos llegado hasta aquí
@@ -65,8 +68,19 @@ const loginController = () => {
           expiresIn: '2D',
         });
         // res.json({ success: true, token });
-        res.cookie('token', token, { httpOnly: true })
+        console.log('Creamos la cookie');
+        res.header('Content-Type', 'application/json;charset=UTF-8')
+        res.header('Access-Control-Allow-Credentials', true)
+        res.header(
+          'Access-Control-Allow-Headers',
+          'Origin, X-Requested-With, Content-Type, Accept'
+        )
+        res.cookie('token', token, { 
+          httpOnly: true, 
+          
+          })
             .sendStatus(200); 
+        
       } catch(err) {
         next(err);
       }
