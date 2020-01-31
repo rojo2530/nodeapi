@@ -11,6 +11,8 @@ const usuarioSchema = mongoose.Schema({
   email: { type: String, required: true, index: true, unique: true },
   nickname: { type: String, required: true, index: true, unique: true },
   password: { type: String, required: true},
+  resetPasswordToken: { type: String },
+  resetPasswordExpires: { type: Date }
 });
 
 usuarioSchema.plugin(uniqueValidator);

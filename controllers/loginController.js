@@ -79,7 +79,8 @@ const loginController = () => {
           httpOnly: true, 
           
           })
-            .sendStatus(200); 
+            .sendStatus(200);
+        
         
       } catch(err) {
         next(err);
