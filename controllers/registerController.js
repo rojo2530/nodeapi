@@ -14,7 +14,9 @@ const registerController = () => {
           { 
             email,
             nickname,
-            password: await Usuario.hashPassword(password)
+            password: await Usuario.hashPassword(password),
+            resetPasswordToken: null,
+            resetPasswordExpires: null
           });
         const userSaved = await user.save();
         res.json({ sucess: true, result: userSaved });

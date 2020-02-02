@@ -16,7 +16,7 @@ const userController = () => {
         }
         const user = await Usuario.findOne({ email })
         if (user === null) {
-          return res.status(403).send('email not in db');
+          return res.status(403).json({ success: true, message: 'email not in db'});
         }
         const token = crypto.randomBytes(20).toString('hex');
         //Actualizamos el ususario con el token
@@ -44,18 +44,21 @@ const userController = () => {
       });
 
       if (user === null) {
-        return res.json('password reset link is invalid or has expired')
+        return res.status(401).json('password reset link is invalid or has expired')
       }
 
       res.status(200).json({
         nickname: user.nickname,
+        email: user.email,
         message: 'password link reset is ok'
       });
 
     },
     updatePassword: async (req, res, next) => {
-      const { email, password } = req.body;
+      const { email, password  } = req.body;
+      console.log(email, password);
       const user = await Usuario.findOne({ email });
+
       if (user === null) {
         return res.status(404).json('user not exists in db');
       }
